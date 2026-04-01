@@ -1,0 +1,16 @@
+{
+  "domain": "elex",
+  "name": "ELEX Spot Prices",
+  "codeowners": [
+    "@exig0"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/exig0/elex_ha",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/exig0/elex_ha/issues",
+  "requirements": [
+    "aiohttp"
+  ],
+  "version": "1.0.0"
+}

@@ -272,11 +272,11 @@ class ElexSpotEntity(CoordinatorEntity, Entity):
         self._coordinator = coordinator
         self._source = coordinator.source
         self._localized = CURRENCY_MAPPING[coordinator.source.currency]
-        self._attr_unique_id = f"{self._source.unique_id} {description.key}"
+        self._attr_unique_id = f"{self._source.unique_id} {description.key}_v2"
         self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, f"{self._source.name} {self._source.market_area}")},
+            identifiers={(DOMAIN, f"elex_api_{self._source.market_area}")},
             name="ELEX Data",
-            manufacturer=self._source.name,
+            manufacturer="ELEX", 
             model=self._source.market_area,
             entry_type=DeviceEntryType.SERVICE,
         )

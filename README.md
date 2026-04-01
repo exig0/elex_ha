@@ -303,7 +303,9 @@ You just have to install [ApexCharts](https://github.com/RomRider/apexcharts-car
 type: custom:apexcharts-card
 header:
   show: true
-  title: Electricity Prices
+  title: ELEX Spot Prices
+  show_states: true
+  colorize_states: true
 graph_span: 48h
 span:
   start: day
@@ -314,11 +316,14 @@ series:
   - entity: sensor.elex_data_total_price
     name: Electricity Price
     type: column
+    float_precision: 3
     extend_to: end
     data_generator: |
       return entity.attributes.data.map((entry) => {
         return [new Date(entry.start_time).getTime(), entry.price_per_kwh];
       });
+yaxis:
+  - decimals: 3
 ```
 
 **Assumptions:**
@@ -428,99 +433,59 @@ Furthermore, it also fills the hours during which prices are lowest (see 2.)
 ```yaml
 type: custom:apexcharts-card
 header:
-  show: false
+  show: true
+  title: ELEX Market Prices
 graph_span: 48h
 span:
   start: day
 now:
   show: true
   label: Now
-color_list:
-  - var(--primary-color)
 series:
-  - entity: sensor.elex_data_price
-    yaxis_id: uurprijs
-    float_precision: 2
+  - entity: sensor.elex_data_market_price
+    name: €/kWh
     type: line
     curve: stepline
-    extend_to: false
-    show:
-      extremas: true
-    data_generator: >
-      return entity.attributes.data.map((entry/*, index*/) => (
-        [new Date(entry.start_time).getTime(), entry.price_per_kwh]
-      )).slice(0, 24);
-    color_threshold:
-      - value: 0
-        color: "#186ddc"
-      - value: 0.155
-        color: "#04822e"
-      - value: 0.2
-        color: "#12A141"
-      - value: 0.25
-        color: "#79B92C"
-      - value: 0.3
-        color: "#C4D81D"
-      - value: 0.35
-        color: "#F3DC0C"
-      - value: 0.4
-        color: red
-      - value: 0.5
-        color: magenta
-  - entity: sensor.elex_data_price
-    yaxis_id: uurprijs
-    float_precision: 2
-    type: line
-    curve: stepline
+    float_precision: 3
     extend_to: end
     show:
       extremas: true
+    # This automatically groups your 15-min data into clean 1-hour steps on the chart
+    group_by:
+      func: avg
+      duration: 1h
     data_generator: >
-      return entity.attributes.data.map((entry/*, index*/) => (
-        [new Date(entry.start_time).getTime(), entry.price_per_kwh]
-      )).slice(23, 47);
+      return entity.attributes.data.map((entry) => {
+        return [new Date(entry.start_time).getTime(), entry.price_per_kwh];
+      });
     color_threshold:
       - value: 0
         color: "#186ddc"
-      - value: 0.155
+      - value: 0.100
         color: "#04822e"
-      - value: 0.2
+      - value: 0.150
         color: "#12A141"
-      - value: 0.25
-        color: "#79B92C"
-      - value: 0.3
-        color: "#C4D81D"
-      - value: 0.35
+      - value: 0.200
         color: "#F3DC0C"
-      - value: 0.4
+      - value: 0.250
         color: red
-      - value: 0.5
+      - value: 0.350
         color: magenta
-  - entity: sensor.elex_data_price
-    yaxis_id: uurprijs
-    type: area
-    color: green
-    float_precision: 2
-    curve: stepline
-    extend_to: false
-    data_generator: >
-      return entity.attributes.data.map((entry/*, index*/) => (
-        [new Date(entry.start_time).getTime(), entry.price_per_kwh]
-      )).slice(parseInt(hass.states['sensor.elex_start_low_period'].state.substring(0, 2)), parseInt(hass.states['sensor.elex_start_low_period'].state.substring(0, 2)) + 4);
 experimental:
   color_threshold: true
 yaxis:
-  - id: uurprijs
-    decimals: 2
+  - decimals: 3
     apex_config:
       title:
         text: €/kWh
-      tickAmount: 4
+      tickAmount: 5
 apex_config:
+  stroke:
+    width: 2
   legend:
     show: false
   tooltip:
     x:
       show: true
-      format: HH:00 - HH:59
+      format: "dd MMM, HH:mm"
 ```

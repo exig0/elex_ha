@@ -1,4 +1,4 @@
-"""ELEX API Client for EPEX Spot integration."""
+"""ELEX API Client for ELEX Spot integration."""
 
 import logging
 from datetime import datetime, timedelta
@@ -9,7 +9,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ElexMarketprice:
-    """Bulletproof data container expected by EPEX Spot core."""
+    """Bulletproof data container expected by ELEX Spot core."""
     def __init__(self, start_time: datetime, end_time: datetime, price_kwh: float):
         self._start_time = start_time
         self._end_time = end_time

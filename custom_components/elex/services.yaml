@@ -4,7 +4,7 @@ get_lowest_price_interval:
       required: false
       selector:
         device:
-          integration: epex_spot
+          integration: elex_spot
     earliest_start:
       required: false
       selector:
@@ -42,7 +42,7 @@ get_highest_price_interval:
       required: false
       selector:
         device:
-          integration: epex_spot
+          integration: elex_spot
     earliest_start:
       required: false
       selector:
@@ -80,4 +80,4 @@ fetch_data:
       required: false
       selector:
         device:
-          integration: epex_spot
+          integration: elex_spot

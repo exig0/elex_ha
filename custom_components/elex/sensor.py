@@ -20,7 +20,7 @@ from .const import (
     ATTR_VOLUME_MWH,
     DOMAIN,
 )
-from . import EpexSpotEntity, EpexSpotDataUpdateCoordinator as DataUpdateCoordinator
+from . import ElexSpotEntity, ElexSpotDataUpdateCoordinator as DataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -33,21 +33,21 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     """
     coordinator: DataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
     entities = [
-        EpexSpotMarketPriceSensorEntity(coordinator),
-        EpexSpotTotalPriceSensorEntity(coordinator),
-        EpexSpotRankSensorEntity(coordinator),
-        EpexSpotQuantileSensorEntity(coordinator),
-        EpexSpotLowestPriceSensorEntity(coordinator),
-        EpexSpotHighestPriceSensorEntity(coordinator),
-        EpexSpotAveragePriceSensorEntity(coordinator),
-        EpexSpotMedianPriceSensorEntity(coordinator),
+        ElexSpotMarketPriceSensorEntity(coordinator),
+        ElexSpotTotalPriceSensorEntity(coordinator),
+        ElexSpotRankSensorEntity(coordinator),
+        ElexSpotQuantileSensorEntity(coordinator),
+        ElexSpotLowestPriceSensorEntity(coordinator),
+        ElexSpotHighestPriceSensorEntity(coordinator),
+        ElexSpotAveragePriceSensorEntity(coordinator),
+        ElexSpotMedianPriceSensorEntity(coordinator),
     ]
 
     async_add_entities(entities)
 
 
-class EpexSpotMarketPriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotMarketPriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="MarketPrice",
@@ -81,8 +81,8 @@ class EpexSpotMarketPriceSensorEntity(EpexSpotEntity, SensorEntity):
         }
 
 
-class EpexSpotTotalPriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotTotalPriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Total Price",
@@ -118,8 +118,8 @@ class EpexSpotTotalPriceSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotBuyVolumeSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotBuyVolumeSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Buy Volume",
@@ -150,8 +150,8 @@ class EpexSpotBuyVolumeSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotSellVolumeSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotSellVolumeSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Sell Volume",
@@ -182,8 +182,8 @@ class EpexSpotSellVolumeSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotVolumeSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotVolumeSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Volume",
@@ -214,8 +214,8 @@ class EpexSpotVolumeSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotRankSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotRankSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Rank",
@@ -251,8 +251,8 @@ class EpexSpotRankSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotQuantileSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotQuantileSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Quantile",
@@ -289,8 +289,8 @@ class EpexSpotQuantileSensorEntity(EpexSpotEntity, SensorEntity):
         return {ATTR_DATA: data}
 
 
-class EpexSpotLowestPriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotLowestPriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Lowest Price",
@@ -319,8 +319,8 @@ class EpexSpotLowestPriceSensorEntity(EpexSpotEntity, SensorEntity):
         }
 
 
-class EpexSpotHighestPriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotHighestPriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Highest Price",
@@ -349,8 +349,8 @@ class EpexSpotHighestPriceSensorEntity(EpexSpotEntity, SensorEntity):
         }
 
 
-class EpexSpotAveragePriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotAveragePriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Average Price",
@@ -376,8 +376,8 @@ class EpexSpotAveragePriceSensorEntity(EpexSpotEntity, SensorEntity):
         }
 
 
-class EpexSpotMedianPriceSensorEntity(EpexSpotEntity, SensorEntity):
-    """Home Assistant sensor containing all EPEX spot data."""
+class ElexSpotMedianPriceSensorEntity(ElexSpotEntity, SensorEntity):
+    """Home Assistant sensor containing all Elex spot data."""
 
     entity_description = SensorEntityDescription(
         key="Median Price",

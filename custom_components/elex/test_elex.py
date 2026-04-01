@@ -3,7 +3,7 @@
 import aiohttp
 import asyncio
 
-from .EPEXSpot import ELEX
+from .ELEX import ELEX
 from .const import UOM_EUR_PER_KWH
 
 # Safe, rate-limited token for public GitHub testing for BE market area.

@@ -1,4 +1,4 @@
-"""Component for EPEX Spot support."""
+"""Component for ELEX support."""
 
 import asyncio
 import logging
@@ -78,7 +78,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         ex.__cause__ = err
         raise ex
 
-    coordinator = EpexSpotDataUpdateCoordinator(hass, source=source)
+    coordinator = ElexSpotDataUpdateCoordinator(hass, source=source)
     await coordinator.async_config_entry_first_refresh()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
@@ -222,7 +222,7 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
     return True
 
 
-class EpexSpotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
+class ElexSpotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Class to manage fetching AccuWeather data API."""
 
     source: SourceShell
@@ -257,16 +257,16 @@ class EpexSpotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 raise
 
 
-class EpexSpotEntity(CoordinatorEntity, Entity):
-    """A entity implementation for EPEX Spot service."""
+class ElexSpotEntity(CoordinatorEntity, Entity):
+    """A entity implementation for ELEX service."""
 
-    _coordinator: EpexSpotDataUpdateCoordinator
+    _coordinator: ElexSpotDataUpdateCoordinator
     _source: SourceShell
     _attr_has_entity_name = True
     _unrecorded_attributes = frozenset({ATTR_DATA})
 
     def __init__(
-        self, coordinator: EpexSpotDataUpdateCoordinator, description: EntityDescription
+        self, coordinator: ElexSpotDataUpdateCoordinator, description: EntityDescription
     ):
         super().__init__(coordinator)
         self._coordinator = coordinator
@@ -275,7 +275,7 @@ class EpexSpotEntity(CoordinatorEntity, Entity):
         self._attr_unique_id = f"{self._source.unique_id} {description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, f"{self._source.name} {self._source.market_area}")},
-            name="EPEX Spot Data",
+            name="ELEX Data",
             manufacturer=self._source.name,
             model=self._source.market_area,
             entry_type=DeviceEntryType.SERVICE,

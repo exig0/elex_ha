@@ -54,8 +54,8 @@
       "description": "Get the time interval during which the price is at its lowest point.",
       "fields": {
         "device_id": {
-          "description": "An EPEX Spot service instance ID. In case you have multiple EPEX Spot instances.",
-          "name": "EPEX Spot Service"
+          "description": "An ELEX Spot service instance ID. In case you have multiple ELEX Spot instances.",
+          "name": "ELEX Spot Service"
         },
         "earliest_start": {
           "description": "Earliest time to start the appliance. If omitted, the current time is used. Refers to today if `Earliest Start Offset` is not set or 0, or tomorrow if offset is 1.",
@@ -89,8 +89,8 @@
       "description": "Get the time interval during which the price is at its highest point.",
       "fields": {
         "device_id": {
-          "description": "An EPEX Spot service instance ID. In case you have multiple EPEX Spot instances.",
-          "name": "EPEX Spot Service"
+          "description": "An ELEX Spot service instance ID. In case you have multiple ELEX Spot instances.",
+          "name": "ELEX Spot Service"
         },
         "earliest_start": {
           "description": "Earliest time to start the appliance. If omitted, the current time is used. Refers to today if `Earliest Start Offset` is not set or 0, or tomorrow if offset is 1.",
@@ -124,8 +124,8 @@
       "description": "Fetch data now",
       "fields": {
         "device_id": {
-          "description": "An EPEX Spot service instance ID. In case you have multiple EPEX Spot instances.",
-          "name": "EPEX Spot Service"
+          "description": "An ELEX Spot service instance ID. In case you have multiple ELEX Spot instances.",
+          "name": "ELEX Spot Service"
         }
       },
       "name": "Fetch data from all services or a specific service."
